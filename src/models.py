@@ -54,7 +54,7 @@ class Person(Base):
     eye_color = Column(String(250), nullable=True)
     hair_color = Column(String(250), nullable=True)
     planet_id = Column(Integer, ForeignKey('planet.id'), nullable=False)
-    vehicles = relationship('Vehicle', backref='person', uselist=False)
+    vehicles = relationship('Vehicle', backref='person')
     favourites = relationship('Favourite', backref='person', lazy=True)
 
 class Vehicle(Base):
@@ -64,7 +64,7 @@ class Vehicle(Base):
     model = Column(String(250), nullable=True)
     length = Column(String(250), nullable=True)
     manufacturer = Column(String(250), nullable=True)
-    person_id = Column(Integer, ForeignKey('person.id'), nullable=False, unique=True)
+    person_id = Column(Integer, ForeignKey('person.id'), nullable=False)
     favourites = relationship('Favourite', backref='vehicle', lazy=True)
 
 class Favourite(Base):
